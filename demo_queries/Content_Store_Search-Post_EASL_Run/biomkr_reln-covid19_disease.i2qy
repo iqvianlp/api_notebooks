@@ -1,0 +1,70 @@
+version: '6.0'
+creationDate: unknown
+query:
+  document:
+    - alternative:
+        - region:
+            where:
+              - alternative:
+                  label: Date
+                  showInHitColumn: false
+                  of:
+                    - class:
+                        snid: date.date
+                        maximumValue: '202210'
+                        minimumValue: '202208'
+                        rangeType: date
+                        rangeMatch: both
+            snid: nlm_medline.pubdate
+            pt: Publication Date
+    - alternative:
+        - alternative:
+            label: phrase_regions
+            where:
+              - phrase:
+                  label: document
+                  maxWordGap: -1
+                  wordGapRestricted: false
+                  multiSentence: true
+                  maxSentenceGap: -1
+                  allowOverlap: true
+                  unordered: true
+                  of:
+                    - alternative:
+                        distinguishHits: false
+                        id: phrase1001
+                        of:
+                          - class:
+                              boundaries: Exact
+                              snid: linguamatics_reln.rn_biomarker
+                              pt: biomarker
+                              excludeIfBetterMatch: false
+                    - alternative:
+                        distinguishHits: false
+                        id: phrase1002
+                        of:
+                          - class:
+                              boundaries: Exact
+                              snid: nlm_plus.D000086382
+                              pt: COVID-19
+                              excludeIfBetterMatch: false
+            of:
+              - region:
+                  label: regular_regions
+                  showInHitColumn: false
+                  showWholeRegion: true
+                  snid: nlm_medline.rroot
+                  pt: Any Region
+output:
+  useOutputEditor: true
+  outputSettings:
+    allDocs: true
+    allTime: true
+    outputType: cluster
+    outputOrdering: document
+    overrideDisambiguation: true
+    hitsPerDoc: 10000
+    hitsPerDocPerAssertion: 1
+    documentsPerAssertion: -1
+    maxResults: 25000
+    maxRows: 10000
