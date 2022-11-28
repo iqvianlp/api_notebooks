@@ -36,4 +36,4 @@ Launch the jupyter notebook of your interest, and follow it step-by-step.
   - $ deactivate
 
 ## Feedback
-Please contact hui.feng@iqvia.com
+Please contact NLPAPIGithub@iqvia.com
